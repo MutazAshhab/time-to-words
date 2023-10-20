@@ -31,32 +31,32 @@ const lookupTable = {
   28: 'twenty eight',
   29: 'twenty nine',
   30: 'half',
-}
+};
 
 function convertTimeToWords(time) {
   if (time === '0:00') {
     return 'midnight';
   }
 
-  let hour = parseInt(time.split(':')[0])
-  let minute = parseInt(time.split(':')[1])
-  
-  const past30 = minute > 30
-  const middleWord = past30 ? 'to' : 'past'
+  let hour = parseInt(time.split(':')[0]);
+  let minute = parseInt(time.split(':')[1]);
+
+  const past30 = minute > 30;
+  const middleWord = past30 ? 'to' : 'past';
 
   // Figure our the hour/minute to situation
-  minute = past30 ? 60 - minute : minute
-  hour = past30 ? hour + 1 : hour
+  minute = past30 ? 60 - minute : minute;
+  hour = past30 ? hour + 1 : hour;
 
   if (minute === '00') {
     if (hour === '12') {
-      return 'midday'
-    } 
+      return 'midday';
+    }
 
-    return `${lookupTable[hour]} o'clock`
+    return `${lookupTable[hour]} o'clock`;
   }
 
-  return `${lookupTable[minute]} ${middleWord} ${lookupTable[hour]}`
+  return `${lookupTable[minute]} ${middleWord} ${lookupTable[hour]}`;
 }
 
 module.exports = { convertTimeToWords };
